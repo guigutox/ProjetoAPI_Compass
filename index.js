@@ -12,6 +12,10 @@ connection
     console.log(erro);
   });
 
+app.get("/", (req, res) => {
+  res.send("Funcionando");
+});
+
 app.listen(3001, () => {
   console.log("Servidor iniciado");
 });
