@@ -17,7 +17,7 @@ const Cliente = Connection.define("clientes", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  data_de_nascimento: {
+  data_nascimento: {
     type: Sequelize.DATE,
     allowNull: false,
   },
@@ -25,7 +25,7 @@ const Cliente = Connection.define("clientes", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  id_cidade: {
+  cidade_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
