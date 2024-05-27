@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const Connection = require("./database.js");
 const Cidade = require("./Cidade");
 
+//Define modelo de cliente
 const Cliente = Connection.define("clientes", {
   id: {
     type: Sequelize.INTEGER,

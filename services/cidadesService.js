@@ -1,4 +1,5 @@
-function validarCidade(req, res, checks) {
+//Valida os valores passados e devolve o erro se houver
+function validarCidade(res, checks) {
     for (let check of checks) {
         if (!check.value || check.value === null || check.value === undefined) {
           return res.status(400).json({ error: `${check.name} não foi informado` });

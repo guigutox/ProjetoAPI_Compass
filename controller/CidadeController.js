@@ -27,7 +27,7 @@ function cadastrarCliente(req, res) {
   ];
 
   //verifica se todos os valores e sinaliza se houver algum erro
-  const erro = validarCidade(req, res, checks);
+  const erro = validarCidade(res, checks);
   if (erro) return erro;
 
   Cidade.create({

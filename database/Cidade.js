@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const connection = require("./database.js");
 
+//Define modelo de cidade
 const Cidade = connection.define("cidades", {
   id: {
     type: Sequelize.INTEGER,
