@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 const Connection = require("./database.js");
 const Cidade = require("./Cidade");
-const { FOREIGNKEYS } = require("sequelize/lib/query-types");
 
 const Cliente = Connection.define("clientes", {
   id: {
@@ -32,7 +31,10 @@ const Cliente = Connection.define("clientes", {
   },
 });
 
-
+//Usado para fazer relacionamento entre tabelas, no caso indica que o campo id_cidade e uma chave estrangeira vinda da model Cidade
 Cliente.belongsTo(Cidade, {
-  foreignKey: "idCidade", allowNull: false
+  foreignKey: "id_cidade",
+  allowNull: false,
 });
+
+module.exports = Cliente;

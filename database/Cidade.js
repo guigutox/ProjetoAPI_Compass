@@ -21,3 +21,5 @@ const Cidade = connection.define("cidades", {
 Cidade.sync({ force: false }).then(() => {
   console.log("Tabela criada");
 });
+
+module.exports = Cidade;
