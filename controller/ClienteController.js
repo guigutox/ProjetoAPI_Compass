@@ -1,6 +1,6 @@
 const Cliente = require("../database/Cliente");
 const Cidade = require("../database/Cidade");
-const validarCliente = require("../services/clientesService");
+const {validarCliente, validarNome} = require("../services/clientesService");
 
 async function cadastrarClientes(req, res) {
     const { id, nome_completo, sexo, data_nascimento, idade, cidade_id } = req.body;
@@ -75,4 +75,25 @@ async function cadastrarClientes(req, res) {
   }
 }
 
-module.exports = cadastrarClientes;
+async function findClienteByName(req, res) {
+  const {nome_completo} = req.params;
+  const checks = [{
+    name: "nome completo",
+    value: nome_completo,
+    typeExpected: "string",
+  }]
+
+  const erro = validarNome(checks, res);
+  if (erro) return erro;
+
+  const cliente = await Cliente.findAll({where: {nome_completo: nome_completo}});
+
+  if(!cliente || cliente.length === 0){
+    return res.status(404).json({error: "Cliente não encontrado"});
+  }else{
+    return res.status(200).json(cliente);
+  }
+}
+
+
+module.exports = {cadastrarClientes, findClienteByName};

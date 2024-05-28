@@ -34,7 +34,7 @@ const Cliente = Connection.define("clientes", {
 
 //Usado para fazer relacionamento entre tabelas, no caso indica que o campo id_cidade e uma chave estrangeira vinda da model Cidade
 Cliente.belongsTo(Cidade, {
-  foreignKey: "id_cidade",
+  foreignKey: "cidade_id",
   allowNull: false,
 });
 
