@@ -1,7 +1,7 @@
 const Cidade = require("../database/Cidade");
-const validarCidade = require("../services/cidadesService");
+const {validarCidade, validarNome} = require("../services/cidadesService");
 
-function cadastrarCliente(req, res) {
+function cadastrarCidade(req, res) {
   const { id, nome, estado } = req.body;
 
   //array armazena os valores, tipos esperados e as mensagens derro
@@ -47,4 +47,19 @@ function cadastrarCliente(req, res) {
     });
 }
 
-module.exports = cadastrarCliente;
+async function findCidadeByName(req, res) {
+  let { nome } = req.params;
+
+  const erro = validarNome(nome, res);
+  if(erro) return erro;
+
+  const cidade = await Cidade.findOne({ where: { nome: nome } });
+
+  if (!cidade) {
+    return res.status(404).json({ error: "Cidade não encontrada" });
+  } else {
+    return res.status(200).json(cidade);
+  }
+}
+
+module.exports = { cadastrarCidade, findCidadeByName };

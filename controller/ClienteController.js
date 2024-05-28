@@ -1,10 +1,9 @@
 const Cliente = require("../database/Cliente");
 const Cidade = require("../database/Cidade");
-const validarCidade = require("../services/cidadesService");
+const validarCliente = require("../services/clientesService");
 
 async function cadastrarClientes(req, res) {
-    const { id, nome_completo, sexo, data_nascimento, idade, cidade_id } =
-    req.body;
+    const { id, nome_completo, sexo, data_nascimento, idade, cidade_id } = req.body;
 
   const checks = [
     {
@@ -45,8 +44,9 @@ async function cadastrarClientes(req, res) {
     },
   ];
 
-  const erro = validarCidade(res, checks);
+  const erro = validarCliente(res, checks);
   if (erro) return erro;
+
 
   try {
     const cidade = await Cidade.findOne({ where: { id: cidade_id } });
