@@ -50,7 +50,15 @@ function cadastrarCidade(req, res) {
 async function findCidadeByName(req, res) {
   let { nome } = req.params;
 
-  const erro = validarNome(nome, res);
+  const checks =[
+    {
+      name: "cidade",
+      value: nome,
+      }
+  ]
+
+
+  const erro = validarNome(checks, res);
   if(erro) return erro;
 
   const cidade = await Cidade.findOne({ where: { nome: nome } });
@@ -62,4 +70,27 @@ async function findCidadeByName(req, res) {
   }
 }
 
-module.exports = { cadastrarCidade, findCidadeByName };
+async function findCidadebyEstado(req, res) {
+  let { estado } = req.params;
+
+  check = [
+    {
+      name: "estado",
+      value: estado,
+    },
+  ];
+
+  const erro = validarNome(check, res);
+  if (erro) return erro;
+
+  const estadofinded = await Cidade.findAll({ where: { estado: estado } });
+
+  if (!estadofinded || estadofinded.length === 0) {
+    return res.status(404).json({ error: "Cidade não encontrada" });
+  } else {
+    return res.status(200).json(estadofinded);
+  }
+}
+
+
+module.exports = { cadastrarCidade, findCidadeByName, findCidadebyEstado };

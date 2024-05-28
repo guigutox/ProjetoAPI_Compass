@@ -15,24 +15,36 @@ function validarCidade(res, checks) {
   return null;
 }
 
-function validarNome(name, res) {
-  const hasNumber = /\d/.test(name);
+function validarNome(checks, res) {
 
-  if (!name || name === null || name === undefined) {
-    return res.status(400).json({ error: "Nome da cidade não foi informado" });
-  }
-  if (hasNumber) {
-    return res
-      .status(400)
-      .json({ error: "Nome da cidade deve ser uma string" });
-  }
-  if (name.length < 3) {
-    return res
-      .status(400)
-      .json({ error: "Nome da cidade deve ter pelo menos 3 caracteres" });
-  }
+  for (let check of checks) {
+    //Expressão regular para verificar se o valor contém pelo menos um número
+    const hasNumber = /\d/.test(check.value);
 
+    //verifica os valores e retorna o erro se houver
+    if (!check.value || check.value === null || check.value === undefined) {
+      return res.status(400).json({ error: `${check.name} não foi informado` });
+    }
+    //Verifica a resposta retornada se há numeros no campo passado
+    if (hasNumber) {
+      return res
+        .status(400)
+        .json({ error: `${check.name} não deve conter números` });
+    }
+    //Delimita o tamanho do campo para ser maior que 3
+    if (check.name === "nome" && check.value.length < 3) {
+      return res
+        .status(400)
+        .json({ error: "Nome da cidade deve ter pelo menos 3 caracteres" });
+    }
+    //Delimita o tamanho do campo para ser maior que 2
+    if (check.name === "estado" && check.value.length < 2) {
+      return res
+        .status(400)
+        .json({ error: "Nome do estado deve ter pelo menos 2 caracteres" });
+    }
+  }
   return null;
 }
 
-module.exports = {validarCidade, validarNome};
+module.exports = { validarCidade, validarNome };
