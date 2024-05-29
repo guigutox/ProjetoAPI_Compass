@@ -29,18 +29,23 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
+//Rota para cadastrar uma cidade
+app.post("/cidades", cadastrarCidade);
 
-app.post("/cadastrarcidades", cadastrarCidade);
+//Rota para cadastrar um cliente
+app.post("/clientes", cadastrarClientes);
 
-app.post("/cadastrarclientes", cadastrarClientes);
+//Rota para buscar uma cidade pelo nome
+app.get("/cidades/:nome", findCidadeByName);
 
-app.get("/cidades/nome/:nome", findCidadeByName);
+//Rota para buscar uma cidade pelo estado
+app.get("/estados/:estado/cidades", findCidadebyEstado);
 
-app.get("/cidades/estado/:estado", findCidadebyEstado);
-
-app.get("/clientes/nome/:nome_completo", findClienteByName);
-
+//Rota para buscar um cliente pelo id
 app.get("/clientes/:id", findClienteById)
+
+//Rota para buscar um cliente pelo nome (utilizando query params)
+app.get("/clientes", findClienteByName);
 
 app.listen(3001, () => {
   console.log("Servidor iniciado");
