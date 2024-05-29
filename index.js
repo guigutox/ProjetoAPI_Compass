@@ -5,8 +5,8 @@ const connection = require("./database/database.js");
 const bodyParser = require("body-parser");
 const Cidade = require("./database/Cidade");
 const Cliente = require("./database/Cliente");
-const {cadastrarCidade, findCidadeByName, findCidadebyEstado} = require("./controller/CidadeController");
-const {cadastrarClientes, findClienteByName} = require("./controller/ClienteController");
+const {cadastrarCidade, findCidadeByName, findCidadebyEstado} = require("./controllers/CidadeController.js");
+const {cadastrarClientes, findClienteByName, findClienteById} = require("./controllers/ClienteController.js");
 
 
 connection
@@ -39,6 +39,8 @@ app.get("/cidades/nome/:nome", findCidadeByName);
 app.get("/cidades/estado/:estado", findCidadebyEstado);
 
 app.get("/clientes/nome/:nome_completo", findClienteByName);
+
+app.get("/clientes/:id", findClienteById)
 
 app.listen(3001, () => {
   console.log("Servidor iniciado");

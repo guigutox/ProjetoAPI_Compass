@@ -1,5 +1,5 @@
 const Cidade = require("../database/Cidade");
-const {validarCidade, validarNome} = require("../services/cidadesService");
+const {validarCidade, validarNome} = require("../services/CidadesService");
 
 function cadastrarCidade(req, res) {
   const { id, nome, estado } = req.body;

@@ -1,9 +1,10 @@
 const Cliente = require("../database/Cliente");
 const Cidade = require("../database/Cidade");
-const {validarCliente, validarNome} = require("../services/clientesService");
+const { validarCliente, validarNome } = require("../services/ClientesService");
 
 async function cadastrarClientes(req, res) {
-    const { id, nome_completo, sexo, data_nascimento, idade, cidade_id } = req.body;
+  const { id, nome_completo, sexo, data_nascimento, idade, cidade_id } =
+    req.body;
 
   const checks = [
     {
@@ -47,7 +48,6 @@ async function cadastrarClientes(req, res) {
   const erro = validarCliente(res, checks);
   if (erro) return erro;
 
-
   try {
     const cidade = await Cidade.findOne({ where: { id: cidade_id } });
     if (!cidade) {
@@ -76,24 +76,53 @@ async function cadastrarClientes(req, res) {
 }
 
 async function findClienteByName(req, res) {
-  const {nome_completo} = req.params;
-  const checks = [{
-    name: "nome completo",
-    value: nome_completo,
-    typeExpected: "string",
-  }]
+  const { nome_completo } = req.params;
+  const checks = [
+    {
+      name: "nome completo",
+      value: nome_completo,
+      typeExpected: "string",
+    },
+  ];
 
   const erro = validarNome(checks, res);
   if (erro) return erro;
 
-  const cliente = await Cliente.findAll({where: {nome_completo: nome_completo}});
+  const cliente = await Cliente.findAll({
+    where: { nome_completo: nome_completo },
+  });
 
-  if(!cliente || cliente.length === 0){
-    return res.status(404).json({error: "Cliente não encontrado"});
-  }else{
+  if (!cliente || cliente.length === 0) {
+    return res.status(404).json({ error: "Cliente não encontrado" });
+  } else {
     return res.status(200).json(cliente);
   }
 }
 
+async function findClienteById(req, res) {
+  const id = Number(req.params.id);
 
-module.exports = {cadastrarClientes, findClienteByName};
+  console.log(typeof id);
+  console.log(id)
+
+  const checks = [
+    {
+      name: "id",
+      value: id,
+      typeExpected: "number",
+    },
+  ];
+
+  const erro = validarNome(checks, res);
+  if (erro) return erro;
+
+  const cliente = await Cliente.findOne({ where: { id: id } });
+
+  if (!cliente) {
+    return res.status(404).json({ error: "Cliente não encontrado" });
+  } else {
+    return res.status(200).json(cliente);
+  }
+}
+
+module.exports = { cadastrarClientes, findClienteByName, findClienteById };
