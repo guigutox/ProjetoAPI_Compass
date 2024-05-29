@@ -152,4 +152,38 @@ async function deleteClientById(req, res) {
   }
 }
 
-module.exports = { cadastrarClientes, findClienteByName, findClienteById, deleteClientById };
+async function patchClienteName(req, res) {
+
+  const id = req.body.id;
+  const nome_completo = req.body.nome_completo;
+
+  const checks = [
+    {
+      name: "id",
+      value: id,
+      typeExpected: "number",
+    },
+    {
+      name: "nome_completo",
+      value: nome_completo,
+      typeExpected: "string",
+    },
+  ];
+
+  const erro = validarNome(checks, res);
+  if (erro) return erro;
+
+  const cliente = await Cliente.findOne({ where: { id: id } });
+  if (!cliente) {
+    return res.status(404).json({ error: "Cliente não encontrado" });
+  } else {
+    const updated = await cliente.update({ nome_completo: nome_completo });
+    if (!updated) {
+      return res.status(500).json({ error: "Erro ao atualizar o nome" });
+    } else {
+      return res.status(200).json({ message: "Nome atualizado com sucesso!" });
+    }
+  }
+
+}
+module.exports = { cadastrarClientes, findClienteByName, findClienteById, deleteClientById, patchClienteName };

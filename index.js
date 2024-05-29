@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const Cidade = require("./database/Cidade");
 const Cliente = require("./database/Cliente");
 const {cadastrarCidade, findCidadeByName, findCidadebyEstado} = require("./controllers/CidadeController.js");
-const {cadastrarClientes, findClienteByName, findClienteById, deleteClientById} = require("./controllers/ClienteController.js");
+const {cadastrarClientes, findClienteByName, findClienteById, deleteClientById, patchClienteName} = require("./controllers/ClienteController.js");
 
 
 connection
@@ -49,6 +49,8 @@ app.get("/clientes", findClienteByName);
 
 //Rota para deletar um cliente pelo id
 app.delete("/clientes/:id", deleteClientById); 
+
+app.patch("/clientes", patchClienteName);
 
 app.listen(3001, () => {
   console.log("Servidor iniciado");
