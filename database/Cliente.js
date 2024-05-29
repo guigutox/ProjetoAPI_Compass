@@ -6,7 +6,6 @@ const Cidade = require("./Cidade");
 const Cliente = Connection.define("clientes", {
   id: {
     type: Sequelize.INTEGER,
-    autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
