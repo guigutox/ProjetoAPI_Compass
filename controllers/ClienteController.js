@@ -129,4 +129,27 @@ async function findClienteByName(req, res) {
   }
 }
 
-module.exports = { cadastrarClientes, findClienteByName, findClienteById };
+async function deleteClientById(req, res) {
+
+  const id = Number(req.params.id);
+
+  const checks = [
+    {
+      name: "id",
+      value: id,
+      typeExpected: "number",
+    },
+  ];
+
+  const erro = validarNome(checks, res);
+  if (erro) return erro;
+
+  const cliente = await Cliente.destroy({ where: { id: id } });
+  if (!cliente) {
+    return res.status(404).json({ error: "Cliente não encontrado" });
+  } else {
+    return res.status(200).json({ message: "Cliente excluido com sucesso!" });
+  }
+}
+
+module.exports = { cadastrarClientes, findClienteByName, findClienteById, deleteClientById };
