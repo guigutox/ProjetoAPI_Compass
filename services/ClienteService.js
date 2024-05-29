@@ -1,3 +1,4 @@
+const { isISO8601 } = require("validator");
 //Valida os valores passados e devolve o erro se houver
 function validarCliente(res, checks) {
     for (let check of checks) {
@@ -9,9 +10,20 @@ function validarCliente(res, checks) {
         }
         if (check.typeExpected === "number" && check.value <= 0)
           return res.status(400).json({ error: `${check.name} deve ser maior que zero` });
+        if (check.name === "data_nascimento"){
+            //Verifica se está no padrão da ISO8601 yyyy-mm-dd e se não há numeros absurdos ex: 2020-13-33
+            if(!isISO8601(check.value)) {
+              return res.status(400).json({ error: `${check.name} deve ser uma data valida` });
+            }
+            const date = new Date();
+            const data_nascimento = new Date(check.value);
+            if(data_nascimento > date){
+              return res.status(400).json({ error: `${check.name} deve ser menor que a data atual` });
+            }
+          
+        } 
       }
 }
-
 
 function validarNome(checks, res) {
 
@@ -38,3 +50,4 @@ function validarNome(checks, res) {
 }
 
 module.exports = {validarCliente, validarNome};
+

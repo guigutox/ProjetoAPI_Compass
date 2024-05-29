@@ -30,7 +30,7 @@ async function cadastrarClientes(req, res) {
       name: "data_nascimento",
       value: data_nascimento,
       typeExpected: "string",
-      errorMessage: "Data de nascimento deve ser uma string",
+      errorMessage: "Data de nascimento deve ser do tipo date",
     },
     {
       name: "idade",
