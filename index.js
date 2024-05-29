@@ -3,11 +3,11 @@ const app = express();
 const cors = require("cors");
 const connection = require("./database/database.js");
 const bodyParser = require("body-parser");
-const Cidade = require("./database/Cidade");
-const Cliente = require("./database/Cliente");
+const dotenv = require("dotenv");
 const {cadastrarCidade, findCidadeByName, findCidadebyEstado} = require("./controllers/CidadeController.js");
 const {cadastrarClientes, findClienteByName, findClienteById, deleteClientById, patchClienteName} = require("./controllers/ClienteController.js");
 
+dotenv.config();
 
 connection
   .authenticate()
@@ -50,6 +50,7 @@ app.get("/clientes", findClienteByName);
 //Rota para deletar um cliente pelo id
 app.delete("/clientes/:id", deleteClientById); 
 
+//Rota para alterar o nome de um cliente
 app.patch("/clientes", patchClienteName);
 
 app.listen(3001, () => {
