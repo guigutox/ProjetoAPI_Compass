@@ -3,10 +3,10 @@
 ## Índice 
 
 - [Instalação](instalação)
-- [Uso](#uso) 
 - [Endpoints](#endpoints)
 
 ## Instalação
+Para que seja possível rodar a API de forma local, siga os passos a seguir:
 
 1. Clone o repositório:  
 ```git clone https://github.com/guigutox/ProjetoAPI_Compass/tree/main ```
@@ -80,4 +80,33 @@
     ``` node index.js ```
 
 
+---
+## EndPoints
 
+- ### POST /cidades
+  - URL: `http://localhost:3001/cidades`
+  - MÉTODO: `POST`
+  - Resposta de Sucesso: `201`
+  - Formato da resposta: 
+  ~~~ json 
+  {
+    "message": "Cidade criada com sucesso!"
+  }
+  ~~~
+
+- ### POST /clientes
+  - URL: `http://localhost:3001/clientes`
+  - MÉTODO: `POST`
+  - Resposta de sucesso: `201`
+  - Formato da resposta:
+  ~~~ json 
+  {
+    "message": "Cliente criada com sucesso!"
+  }
+  ~~~
+
+- ### 
+
+
+
+  

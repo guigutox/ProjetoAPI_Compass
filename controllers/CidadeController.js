@@ -36,7 +36,7 @@ function cadastrarCidade(req, res) {
     estado: estado,
   })
     .then(() => {
-      res.status(200).json({ message: "Cidade criada com sucesso!" });
+      res.status(201).json({ message: "Cidade criada com sucesso!" });
     })
     .catch((err) => {
       if (err.name === "SequelizeUniqueConstraintError") {
