@@ -55,7 +55,8 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
    (3, 'Salvador', 'Bahia'),
    (4, 'Fortaleza', 'Ceará'),
    (5, 'Manaus', 'Amazonas'),
-   (6, 'Porto Alegre', 'Rio Grande do Sul');
+   (6, 'Porto Alegre', 'Rio Grande do Sul'),
+   (7, 'Barreiras', 'Bahia');
 
    -- Inserir dados na tabela clientes
    INSERT INTO clientes (id, nome_completo, sexo, data_nascimento, idade, cidade_id) VALUES
@@ -86,35 +87,37 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
 - ### POST /cidades
   - URL: `http://localhost:3001/cidades`
   - MÉTODO: `POST`
+  - Descrição: Rota utilizada para cadastrar novas cidades
   - Formato da requisição:
     ~~~ json 
-    {
-    "id": integer,
-    "nome": string,
-    "estado": string
-    }
+        {
+        "id": integer,
+        "nome": string,
+        "estado": string
+        }
     ~~~
   - Exemplo requisição de sucesso:
-        ~~~ json
+    ~~~json
         {
             "id": 1,
             "nome": "Uberlândia",
             "estado": "Minas Gerais"
         }
-        ~~~
+    ~~~
   - Resposta de Sucesso: `201 created`
   - Formato da resposta: 
-        ~~~ json 
+    ~~~json 
         {
             "message": "Cidade criada com sucesso!"
         }
-        ~~~
+    ~~~
 
 - ### POST /clientes
   - URL: `http://localhost:3001/clientes`
   - MÉTODO: `POST`
+  - Descrição: Rota utilizada para cadastrar novos clientes
   - Formato da requisição:
-        ~~~ json 
+    ~~~ json 
         {
         "id": integer,
         "nome_completo": string,
@@ -123,7 +126,7 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
         "idade": integer ,
         "cidade_id": integer
         }
-        ~~~
+    ~~~
   - Exemplo Requisição de sucesso: 
     ~~~ json 
         {
@@ -137,15 +140,121 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
     ~~~
   - Resposta de sucesso: `201 created`
   - Formato da resposta:
-        ~~~ json 
+    ~~~json
         {
             "message": "Cliente criado com sucesso!"
         }
-        ~~~
+    ~~~
 
-- ### GET /clientes:nome
-  
+- ### GET /cidades/:nome
+  - URL: `http://localhost:3001/cidades/:nome`
+  - MÉTODO: `GET`
+  - DESCRIÇÃO: Rota utilizada para buscar cidades passando o nome como parametro de busca
+  - EXEMPLO REQUISIÇÃO DE SUCESSO: `http://localhost:3001/cidades/Salvador`
+  - RESPOSTA DE SUCESSO: `200 OK`
+  - EXEMPLO RESPOSTA:  
+      ~~~json
+          {
+          "id": 3,
+          "nome": "Salvador",
+          "estado": "Bahia"
+          }
+      ~~~
+
+- ### GET /estados/:estado/cidades
+  - URL: `http://localhost:3001/estados/:estado/cidades`
+  - MÉTODO: `GET`
+  - DESCRIÇÃO: Rota utilizada para buscar cidades passando o nome do estado como parametro
+  - EXEMPLO REQUISIÇÃO DE SUCESSO: `http://localhost:3001/estados/bahia/cidades`
+  - RESPOSTA DE SUCESSO: `200 OK`
+  - EXEMPLO RESPOSTA:  
+      ~~~json
+          {
+          "id": 3,
+          "nome": "Salvador",
+          "estado": "Bahia"
+          }
+          { 
+          "id": 7,
+          "nome": "Barreiras",
+          "estado": "Bahia"
+          }
+      ~~~
+ 
+- ### GET /clientes
+  - URL: `http://localhost:3001/clientes/:id`
+  - MÉTODO: `GET`
+  - DESCRIÇÃO: Rota utilizada para buscar um cliente a partir de seu ID passado como parâmetro
+  - EXEMPLO REQUISIÇÃO DE SUCESSO: `http://localhost:3001/clientes/1`
+  - RESPOSTA DE SUCESSO: `200 OK`
+  - EXEMPLO RESPOSTA:  
+      ~~~json
+        {
+            "id": 1,
+            "nome_completo": "Ana Silva",
+            "sexo": "Feminino",
+            "data_nascimento": "1990-05-15",
+            "idade": 31,
+            "cidade_id": 1
+        }
+      ~~~
 
 
+- ### GET /clientes
+  - URL: `http://localhost:3001/clientes?nome_completo=`
+  - MÉTODO: `GET`
+  - DESCRIÇÃO: Rota utilizada para buscar clientes pelo nome utilizando query parameters
+  - EXEMPLO REQUISIÇÃO DE SUCESSO: `http://localhost:3001/clientes?nome_completo=Ana Silva`
+  - RESPOSTA DE SUCESSO: `200 OK`
+  - EXEMPLO RESPOSTA:  
+      ~~~json
+        {
+            "id": 1,
+            "nome_completo": "Ana Silva",
+            "sexo": "Feminino",
+            "data_nascimento": "1990-05-15",
+            "idade": 31,
+            "cidade_id": 1
+        }
+      ~~~
 
-  
+- ### DELETE /clientes
+  - URL: `http://localhost:3001/clientes/:id`
+  - MÉTODO: `DELETE`
+  - DESCRIÇÃO: Rota utilizada para deletar cliente  a partir de seus IDs
+  - EXEMPLO REQUISIÇÃO DE SUCESSO: `http://localhost:3001/clientes/1`
+  - RESPOSTA DE SUCESSO: `200 OK`
+  - EXEMPLO RESPOSTA:  
+      ~~~json
+        {
+            "message": "Cliente excluido com sucesso!"
+        }   
+      ~~~
+
+
+- ### PATCH /clientes
+  - URL: `http://localhost:3001/cidades`
+  - MÉTODO: `PATCH`
+  - Descrição: Rota para atualizar o nome completo dos cliente a partir de seus IDs
+  - Formato da requisição:
+    ~~~ json 
+        {
+        "id": integer,
+        "nome_completo": string,
+        }
+    ~~~
+  - Exemplo requisição de sucesso:
+    ~~~json
+        {
+            "id": 1,
+            "nome_completo": "Ana Paula"
+        }
+    ~~~
+  - Resposta de Sucesso: `201 created`
+  - Formato da resposta: 
+    ~~~json 
+        {
+            "message": "Nome atualizado com sucesso!"
+        }
+    ~~~
+ 
