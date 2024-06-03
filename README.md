@@ -1,4 +1,5 @@
 # Projeto API Compass
+Esta API foi criada seguindo as instruções do progress report da bolsa de estágio da compass UOL, com o intuíto de exercitar conceitos de API REST, node.js, entre outros conceitos aprendidos durante a trilha de estudo.
 
 ## Índice 
 
@@ -21,7 +22,7 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
 
 5. Instale o MYSQL WorkBench: https://www.mysql.com/products/workbench/
 
-   1. Abra o MYSQL WorkBench e rode o seguinte script:  
+   1. Abra o MYSQL WorkBench e rode o script do arquivo abaixo:  
     [Script para criar e popular o banco](script.sql)
 
 
