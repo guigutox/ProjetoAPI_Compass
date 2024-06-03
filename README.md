@@ -86,26 +86,65 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
 - ### POST /cidades
   - URL: `http://localhost:3001/cidades`
   - MÉTODO: `POST`
-  - Resposta de Sucesso: `201`
+  - Formato da requisição:
+    ~~~ json 
+    {
+    "id": integer,
+    "nome": string,
+    "estado": string
+    }
+    ~~~
+  - Exemplo requisição de sucesso:
+        ~~~ json
+        {
+            "id": 1,
+            "nome": "Uberlândia",
+            "estado": "Minas Gerais"
+        }
+        ~~~
+  - Resposta de Sucesso: `201 created`
   - Formato da resposta: 
-  ~~~ json 
-  {
-    "message": "Cidade criada com sucesso!"
-  }
-  ~~~
+        ~~~ json 
+        {
+            "message": "Cidade criada com sucesso!"
+        }
+        ~~~
 
 - ### POST /clientes
   - URL: `http://localhost:3001/clientes`
   - MÉTODO: `POST`
-  - Resposta de sucesso: `201`
+  - Formato da requisição:
+        ~~~ json 
+        {
+        "id": integer,
+        "nome_completo": string,
+        "sexo": string,
+        "data_nascimento": date,
+        "idade": integer ,
+        "cidade_id": integer
+        }
+        ~~~
+  - Exemplo Requisição de sucesso: 
+    ~~~ json 
+        {
+        "id": 1,
+        "nome_completo": "Guilherme A",
+        "sexo": "Masculino",
+        "data_nascimento": "2002-02-12",
+        "idade": 21 ,
+        "cidade_id": 1
+        }
+    ~~~
+  - Resposta de sucesso: `201 created`
   - Formato da resposta:
-  ~~~ json 
-  {
-    "message": "Cliente criada com sucesso!"
-  }
-  ~~~
+        ~~~ json 
+        {
+            "message": "Cliente criado com sucesso!"
+        }
+        ~~~
 
-- ### 
+- ### GET /clientes:nome
+  
 
 
 
