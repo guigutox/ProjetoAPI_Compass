@@ -181,7 +181,7 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
           }
       ~~~
  
-- ### GET /clientes
+- ### GET /clientes/:id
   - URL: `http://localhost:3001/clientes/:id`
   - MÉTODO: `GET`
   - DESCRIÇÃO: Rota utilizada para buscar um cliente a partir de seu ID passado como parâmetro
