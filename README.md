@@ -3,8 +3,10 @@ Esta API foi criada seguindo as instruções do progress report da bolsa de est�
 
 ## Índice 
 
-- [Instalação](instalação)
-- [Endpoints](#endpoints)
+- [Projeto API Compass](#projeto-api-compass)
+  - [Índice](#índice)
+  - [Instalação](#instalação)
+  - [EndPoints](#endpoints)
 
 ## Instalação
 Para que seja possível rodar a API de forma local, siga os passos a seguir:
