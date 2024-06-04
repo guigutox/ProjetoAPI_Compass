@@ -7,6 +7,7 @@ Esta API foi criada seguindo as instruções do progress report da bolsa de est�
   - [Índice](#índice)
   - [Instalação](#instalação)
   - [EndPoints](#endpoints)
+  - [Testes](#testes)
 
 ## Instalação
 Para que seja possível rodar a API de forma local, siga os passos a seguir:
@@ -17,7 +18,7 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
 2. Navavegue até o repositório:  
    ```cd  ProjetoAPI_Compass```
 
-3. Abra o terminal e instale as dependências:  
+3. Com node já préviamente instalado em sua maquina abra o terminal e instale as dependências:  
    ``` npm install```
 
 4. Instale o MYSQL server: https://dev.mysql.com/downloads/installer/
@@ -217,3 +218,8 @@ Para que seja possível rodar a API de forma local, siga os passos a seguir:
         }
     ~~~
  
+ ## Testes
+ Enfim, é possível realizar testes com uma coleção pré montada no postman. O arquivo json está localizado na pasta raiz do projeto junto ao index.js, package.json. Tambem é possível acessa-lo clickando [aqui](Colecao_API_Compass.postman_collection.json)
+
+ Para importa-lo, basta abrir o postman, clickar na opção importar e colocar o arquivo que foi passado anteriormente.
+

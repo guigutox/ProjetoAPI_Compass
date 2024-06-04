@@ -86,7 +86,7 @@ async function findCidadebyEstado(req, res) {
   const estadofinded = await Cidade.findAll({ where: { estado: estado } });
 
   if (!estadofinded || estadofinded.length === 0) {
-    return res.status(404).json({ error: "Cidade não encontrada" });
+    return res.status(404).json({ error: "Estado não encontrado ou nenhuma cidade cadastrada para este estado" });
   } else {
     return res.status(200).json(estadofinded);
   }
